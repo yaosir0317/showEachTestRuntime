@@ -22,7 +22,7 @@ if 'test' in sys.argv and '--time' in sys.argv:
     def tearDownClass(cls):
         runtime = time.time() - cls.class_start_time
         if runtime < vaild_time:
-            runtime = f"\033[32m{runtime}.3f\033[0m"
+            runtime = f"\033[32m{runtime}\033[0m"
         else:
             runtime = f"\033[31m{runtime}\033[0m"
 
