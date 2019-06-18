@@ -1,5 +1,7 @@
 import sys
 
+
+vaild_time = 0.7
 # disable logging during tests
 if 'test' in sys.argv:
     import logging
@@ -18,8 +20,14 @@ if 'test' in sys.argv and '--time' in sys.argv:
 
     @classmethod
     def tearDownClass(cls):
-        print("\n\033[94m%s.%s finished in %.3f seconds\033[0m" % (cls.__module__, cls.__name__,
-                                                                   time.time() - cls.class_start_time))
+        runtime = time.time() - cls.class_start_time
+        if runtime < vaild_time:
+            runtime = f"\033[32m{runtime}.3f\033[0m"
+        else:
+            runtime = f"\033[31m{runtime}\033[0m"
+
+        print("\n\033[94m%s.%s finished in %s seconds\033[0m" % (cls.__module__, cls.__name__,
+                                                                 runtime))
 
     TestCase.setUpClass = setUpClass
     TestCase.tearDownClass = tearDownClass
