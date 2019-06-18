@@ -2,14 +2,14 @@ import sys
 
 
 vaild_time = 0.7
-# disable logging during tests
-if 'test' in sys.argv:
-    import logging
-    logging.disable(logging.CRITICAL)
-
 # add support for --time option to measure the time needed to execute each Test Class
 if 'test' in sys.argv and '--time' in sys.argv:
     sys.argv.remove('--time')
+
+    # disable logging during tests
+    import logging
+    logging.disable(logging.CRITICAL)
+
     import time
     from django.test import TestCase
 
